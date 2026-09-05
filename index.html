@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venugopal Rao Nagella — Senior Frontend Engineer</title>
+<meta name="description" content="Senior Frontend Engineer specializing in React.js, TypeScript, Redux and Next.js. 6+ years building EdTech, enterprise security and B2B SaaS platforms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EDEFF2;
+    --panel:#FFFFFF;
+    --ink:#101826;
+    --ink-muted:#4B5566;
+    --ink-soft:#6B7484;
+    --accent:#0E8F8A;
+    --accent-ink:#065855;
+    --amber:#C9822E;
+    --line:#D7DBE0;
+    --line-strong:#B8BFC9;
+    --radius:3px;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  img,svg{display:block; max-width:100%;}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,239,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .nav-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px; text-decoration:none;}
+  .nav-links{display:flex; gap:26px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    text-decoration:none; font-size:14.5px; color:var(--ink-muted);
+    padding-bottom:2px; border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .nav-links a:hover, .nav-links a.active{color:var(--ink); border-color:var(--accent);}
+  .nav-cta{
+    font-size:14px; text-decoration:none; color:var(--panel); background:var(--ink);
+    padding:8px 14px; border-radius:var(--radius); white-space:nowrap;
+    transition:background .15s ease;
+  }
+  .nav-cta:hover{background:var(--accent-ink);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line-strong); border-radius:var(--radius); width:38px; height:34px; cursor:pointer;}
+  .nav-toggle span{display:block; width:16px; height:2px; background:var(--ink); margin:3px auto;}
+
+  @media (max-width:720px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0; background:var(--bg);
+      flex-direction:column; gap:0; border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden; transition:max-height .2s ease;
+    }
+    .nav-links.open{max-height:320px;}
+    .nav-links li{border-top:1px solid var(--line);}
+    .nav-links a{display:block; padding:14px 28px;}
+    .nav-toggle{display:block;}
+    .nav-cta{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 56px;}
+  .hero-eyebrow{
+    font-size:14px; color:var(--accent-ink); margin:0 0 14px;
+  }
+  .hero h1{font-size:clamp(34px,5vw,50px); max-width:12ch;}
+  .hero p.role{
+    font-family:'Space Grotesk', sans-serif; font-size:clamp(17px,2vw,20px);
+    color:var(--ink-muted); margin:10px 0 22px; font-weight:500;
+  }
+  .hero p.summary{max-width:62ch; color:var(--ink-muted); font-size:16.5px;}
+  .hero-actions{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .btn{
+    text-decoration:none; font-size:14.5px; padding:11px 18px; border-radius:var(--radius);
+    display:inline-flex; align-items:center; gap:8px; transition:transform .12s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--panel);}
+  .btn-primary:hover{background:var(--accent-ink); transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line-strong); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink); transform:translateY(-1px);}
+
+  .vitals{
+    margin-top:44px; display:flex; gap:0; border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; max-width:560px; background:var(--panel);
+  }
+  .vital{flex:1; padding:16px 18px; border-right:1px solid var(--line);}
+  .vital:last-child{border-right:none;}
+  .vital-label{font-size:12.5px; color:var(--ink-soft);}
+  .vital-value{font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; margin-top:4px; color:var(--accent-ink);}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{margin-bottom:36px; max-width:56ch;}
+  .section-head h2{font-size:26px;}
+  .section-head .kicker{
+    font-size:13.5px; color:var(--accent-ink); margin:0 0 8px; font-weight:500;
+  }
+  .section-head p{color:var(--ink-muted); margin-top:10px; font-size:15.5px;}
+
+  /* ---------- experience (changelog) ---------- */
+  .timeline{position:relative;}
+  .timeline::before{
+    content:''; position:absolute; left:9px; top:6px; bottom:6px; width:1px; background:var(--line-strong);
+  }
+  .entry{position:relative; padding-left:38px; margin-bottom:46px;}
+  .entry:last-child{margin-bottom:0;}
+  .entry-dot{
+    position:absolute; left:0; top:4px; width:19px; height:19px; border-radius:50%;
+    background:var(--panel); border:2px solid var(--accent); display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:600; color:var(--accent-ink);
+  }
+  .entry-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 20px;}
+  .entry-role{font-family:'Space Grotesk',sans-serif; font-size:19px; font-weight:600;}
+  .entry-period{font-size:13.5px; color:var(--ink-soft); white-space:nowrap;}
+  .entry-org{color:var(--ink-muted); font-size:15px; margin-top:3px;}
+  .entry-project{color:var(--ink-soft); font-size:13.5px; margin-top:2px; font-style:italic;}
+  .entry-bullets{margin:16px 0 0; padding:0; list-style:none;}
+  .entry-bullets li{
+    position:relative; padding-left:16px; margin-bottom:9px; color:var(--ink-muted); font-size:15px;
+  }
+  .entry-bullets li::before{
+    content:''; position:absolute; left:0; top:9px; width:5px; height:5px; background:var(--accent); border-radius:1px;
+  }
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-muted);
+    border:1px solid var(--line); padding:4px 9px; border-radius:var(--radius); background:var(--panel);
+  }
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .skill-row{padding:20px 24px; border-bottom:1px solid var(--line); background:var(--panel);}
+  .skill-row:nth-child(odd){border-right:1px solid var(--line);}
+  @media (max-width:640px){
+    .skills-grid{grid-template-columns:1fr;}
+    .skill-row:nth-child(odd){border-right:none;}
+  }
+  .skill-cat{font-family:'Space Grotesk',sans-serif; font-size:14.5px; font-weight:600; margin-bottom:6px;}
+  .skill-list{color:var(--ink-muted); font-size:14.5px;}
+
+  /* ---------- projects ---------- */
+  .projects{display:grid; gap:18px;}
+  .project{
+    border:1px solid var(--line); border-left:3px solid var(--accent); background:var(--panel);
+    padding:24px 26px; border-radius:var(--radius);
+  }
+  .project h3{font-size:17.5px;}
+  .project .domain{font-size:13px; color:var(--amber); margin-top:4px; font-weight:500;}
+  .project p{color:var(--ink-muted); font-size:15px; margin:12px 0 0;}
+
+  /* ---------- achievements ---------- */
+  .achv-list{list-style:none; margin:0; padding:0; display:grid; gap:14px;}
+  .achv-list li{
+    padding:16px 0; border-bottom:1px solid var(--line); color:var(--ink-muted); font-size:15.5px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .achv-list li:last-child{border-bottom:none;}
+  .achv-mark{color:var(--accent-ink); font-family:'Space Grotesk',sans-serif; font-weight:600; flex-shrink:0;}
+
+  /* ---------- education ---------- */
+  .edu{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px 20px; border:1px solid var(--line); border-radius:var(--radius); padding:22px 26px; background:var(--panel);}
+  .edu h3{font-size:16.5px;}
+  .edu p{color:var(--ink-muted); font-size:14.5px; margin:4px 0 0;}
+  .edu .edu-year{font-size:13.5px; color:var(--ink-soft); white-space:nowrap;}
+
+  /* ---------- contact / footer ---------- */
+  footer{padding:60px 0 70px;}
+  .contact-grid{display:flex; flex-wrap:wrap; gap:34px 48px; align-items:flex-start;}
+  .contact-block h2{font-size:24px; max-width:14ch;}
+  .contact-block p{color:var(--ink-muted); margin-top:10px; max-width:42ch; font-size:15px;}
+  .contact-links{list-style:none; margin:20px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .contact-links a{text-decoration:none; font-size:15px; border-bottom:1px solid var(--line);}
+  .contact-links a:hover{border-color:var(--ink);}
+  .foot-note{margin-top:48px; font-size:13px; color:var(--ink-soft);}
+
+  .reveal{opacity:0; transform:translateY(10px);}
+  .reveal.in{opacity:1; transform:none; transition:opacity .5s ease, transform .5s ease;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name">Venugopal Rao Nagella</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Selected work</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="hero-eyebrow">Bengaluru, India — open to remote roles, UK / US time zones</p>
+    <h1>Frontend systems that hold up at scale.</h1>
+    <p class="role">Senior Frontend Engineer — React.js, TypeScript, Redux, Next.js</p>
+    <p class="summary">
+      Six-plus years building secure, high-performance web applications for platforms
+      used by millions — spanning K-12 EdTech, enterprise security &amp; compliance, and
+      B2B SaaS. I turn design specs into typed, tested, production-grade React, and I
+      care as much about the CI pipeline and the component library as I do about the
+      pixel.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:nvenugopalrao543@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="Venugopal_Rao_Nagella_Resume.pdf" download>Download resume</a>
+    </div>
+    <div class="vitals">
+      <div class="vital"><div class="vital-label">Focus</div><div class="vital-value">Core Web Vitals</div></div>
+      <div class="vital"><div class="vital-label">Stack</div><div class="vital-value">React + TS</div></div>
+      <div class="vital"><div class="vital-label">Experience</div><div class="vital-value">6+ years</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Experience</p>
+      <h2>Three companies, three very different products.</h2>
+      <p>EdTech serving millions of students, an enterprise security &amp; compliance platform, and a multi-product B2B SaaS suite — each pushed a different part of the frontend skill set.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-dot">1</div>
+        <div class="entry-head">
+          <div>
+            <div class="entry-role">Senior Frontend Engineer</div>
+            <div class="entry-org">Softcrylic Technology Solutions India Pvt. Ltd.</div>
+            <div class="entry-project">Project: HMH (Houghton Mifflin Harcourt) — K-12 EdTech Platform</div>
+          </div>
+          <div class="entry-period">Oct 2021 — Present</div>
+        </div>
+        <ul class="entry-bullets">
+          <li>Architected user-facing features with React.js, TypeScript, and Redux for predictable state management across a platform serving millions of students.</li>
+          <li>Built and maintained a reusable, fully typed component library in Storybook, accelerating delivery and enforcing design consistency platform-wide.</li>
+          <li>Improved Core Web Vitals (LCP, FID, CLS) through performance profiling, lazy loading, memoization, and asset optimization.</li>
+          <li>Engineered async data-fetching patterns with react-query, eliminating race conditions and cutting redundant network requests.</li>
+          <li>Automated CI/CD pipelines with GitHub Actions and mentored junior engineers on TypeScript/React best practices.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">Redux</span>
+          <span class="tag">react-query</span><span class="tag">Storybook</span><span class="tag">GitHub Actions</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-dot">2</div>
+        <div class="entry-head">
+          <div>
+            <div class="entry-role">Application Developer (Frontend)</div>
+            <div class="entry-org">Podshore Galaxy Services</div>
+            <div class="entry-project">Project: AGIS — Enterprise Security &amp; Compliance Platform</div>
+          </div>
+          <div class="entry-period">Nov 2019 — Oct 2021</div>
+        </div>
+        <ul class="entry-bullets">
+          <li>Built a security and compliance web application with 20+ feature modules covering access control and data-privacy workflows.</li>
+          <li>Implemented OAuth 2.0/SSO authentication and authorization flows for enterprise clients across US and Arab markets.</li>
+          <li>Integrated RESTful APIs and third-party libraries for consistent, cross-browser UI functionality.</li>
+          <li>Diagnosed and resolved frontend performance and reliability issues in live production systems, reducing incident response time.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">OAuth 2.0</span><span class="tag">SSO</span><span class="tag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-dot">3</div>
+        <div class="entry-head">
+          <div>
+            <div class="entry-role">Front-End Developer</div>
+            <div class="entry-org">Enroco Technologies Pvt. Ltd.</div>
+            <div class="entry-project">Projects: SnugSquare, Enrocare, Enroco — B2B SaaS &amp; E-Commerce</div>
+          </div>
+          <div class="entry-period">Dec 2017 — Oct 2019</div>
+        </div>
+        <ul class="entry-bullets">
+          <li>Built reusable React.js component libraries spanning Product Information Management, Inventory, Orders, and Shipping modules.</li>
+          <li>Architected base classes and framework-level components to maximize code reuse across three product lines.</li>
+          <li>Translated functional requirements into performant, cross-browser-compatible interfaces aligned with product specs.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">Cross-browser UI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Skills</p>
+      <h2>The stack, by category.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Languages &amp; core</div>
+        <div class="skill-list">JavaScript (ES6+), TypeScript, HTML5, CSS3, JSON</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Frameworks &amp; libraries</div>
+        <div class="skill-list">React.js, Next.js, Redux, Redux Toolkit, React Router, React Native, Tailwind CSS, Material UI, Bootstrap, Storybook</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">APIs &amp; auth</div>
+        <div class="skill-list">RESTful APIs, GraphQL, OAuth 2.0, SSO, WebSockets</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Testing &amp; quality</div>
+        <div class="skill-list">Jest, React Testing Library, Unit &amp; Integration Testing, TDD</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Build &amp; DevOps</div>
+        <div class="skill-list">Webpack, Babel, Vite, Git, GitHub Actions</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Data visualization</div>
+        <div class="skill-list">Google Charts, ApexCharts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Selected work</p>
+      <h2>Platforms shipped end to end.</h2>
+    </div>
+    <div class="projects">
+      <div class="project">
+        <h3>HMH — K-12 EdTech Platform</h3>
+        <div class="domain">EdTech · Millions of students</div>
+        <p>Component architecture and Core Web Vitals work for a learning platform, including a typed Storybook library, async data layer with react-query, and CI/CD via GitHub Actions.</p>
+      </div>
+      <div class="project">
+        <h3>AGIS — Enterprise Security &amp; Compliance</h3>
+        <div class="domain">Enterprise Security · US &amp; Arab markets</div>
+        <p>20+ feature modules for access control and compliance workflows, with OAuth 2.0/SSO flows built to meet regional data-security standards.</p>
+      </div>
+      <div class="project">
+        <h3>SnugSquare, Enrocare, Enroco</h3>
+        <div class="domain">B2B SaaS &amp; e-commerce · Multi-product</div>
+        <p>Shared component libraries and framework-level base classes powering Product Information Management, Inventory, Orders, and Shipping across three product lines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Achievements</p>
+      <h2>What that added up to.</h2>
+    </div>
+    <ul class="achv-list">
+      <li><span class="achv-mark">—</span> Delivered production-grade React + TypeScript applications across EdTech, enterprise security, and B2B SaaS, serving users in the US, EU, and Arab markets.</li>
+      <li><span class="achv-mark">—</span> Consistently improved Core Web Vitals (LCP, FID, CLS) on high-traffic platforms through targeted frontend performance work.</li>
+      <li><span class="achv-mark">—</span> Established reusable Storybook component libraries that cut UI development time and enforced design-system consistency across engineering teams.</li>
+      <li><span class="achv-mark">—</span> Mentored junior engineers and led code reviews, building a culture of TypeScript best practices and high test coverage.</li>
+      <li><span class="achv-mark">—</span> Shipped OAuth 2.0/SSO authentication flows compliant with enterprise security standards for global clients.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Education</p>
+    </div>
+    <div class="edu">
+      <div>
+        <h3>Bachelor of Technology (B.Tech), Computer Science &amp; Engineering</h3>
+        <p>Jawaharlal Nehru Technological University (JNTU), Andhra Pradesh, India</p>
+      </div>
+      <div class="edu-year">2014 — 2018</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h2>Let's talk about what you're building.</h2>
+        <p>Available immediately for remote full-time, contract, or freelance work across UK and US time zones.</p>
+        <ul class="contact-links">
+          <li><a href="mailto:nvenugopalrao543@gmail.com">nvenugopalrao543@gmail.com</a></li>
+          <li><a href="tel:+918639202972">+91 86392 02972</a></li>
+          <!-- TODO: add your LinkedIn and GitHub profile URLs here -->
+          <li><a href="#" id="linkedinLink">LinkedIn — add your profile URL</a></li>
+          <li><a href="#" id="githubLink">GitHub — add your profile URL</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-note">Venugopal Rao Nagella — Bengaluru, India. Built with plain HTML, CSS &amp; JS.</p>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // active section highlight
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const setActive = (id) => {
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+  };
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    sections.forEach(s => obs.observe(s));
+  }
+
+  // single hero entrance (respects reduced motion via CSS above)
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.hero').classList.add('reveal');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => document.querySelector('.hero').classList.add('in'));
+    });
+  });
+</script>
+
+</body>
+</html>
